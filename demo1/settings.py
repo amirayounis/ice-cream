@@ -144,6 +144,8 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media_imgs') 
 MEDIA_URL = '/media_imgs/'
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 # LOGIN_REDIRECT_URL="products"
 # LOGOUT_REDIRECT_URL="/home/login/"
 # LOGIN_URL="home:login"
