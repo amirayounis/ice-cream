@@ -1,0 +1,51 @@
+{% extends "template.html" %}
+
+{% block about %}
+{% load static %}
+    
+
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="card mb-3">
+                    <img src="/media_imgs/{{item.img}}"  class="card-img-top" alt="..." height=200px>
+                    <div class="card-body">
+                      <h5 class="card-title">{{item.name|title}}|{{item.size}}|{{item.price}}</h5>
+                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                  </div>
+                
+                <hr>
+                {% for i in list %}
+                <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title" style="color:pink">{{ i.title }}</h5>
+                      <p class="card-text">{{i.body}}</p>
+                      {% if i.user == user %}
+                      <a href="{% url 'del_comment' c_id=i.id %}" class=
+                      "btn btn-sm btn-danger">delete</a>
+                      {% endif %}
+                    </div>
+                  </div>
+                <br>
+                {% endfor %}
+            </div>
+            <div class="col-lg-6">
+                <form action="" method="POST" style="border: solid 2px pink ; border-raduis:10;border-radius: 10px ; padding:20px;width:80%;margin-left:50px" >
+                    {% csrf_token %}
+                      {{form.title}}
+                    <br>
+                    {{form.body}} 
+                    {% comment %} {{form.product.value}} {% endcomment %}
+                     {% comment %} {{form.as_p}}  {% endcomment %}
+                     <br>
+                <input type="submit" class="btn btn-primary btn-block py-3 px-5">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

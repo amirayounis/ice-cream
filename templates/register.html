@@ -1,0 +1,15 @@
+{% extends "template.html" %}
+
+{% block about %}
+{% load static %}
+ <form action="" method="post">
+    {% csrf_token %} 
+     {% for field in form %}
+  {{field.label}} : {{field}}
+  <br><br>
+  {% endfor %}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form> 
+ {{form.errors}}
+ 
+{% endblock %}
